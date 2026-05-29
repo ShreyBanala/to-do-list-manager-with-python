@@ -1,14 +1,17 @@
 
 
+#spaces fixed 
 
-def complete (to_do_list, completed_tasks):
-    combined_tuple=()
-    task_lookup=input("Which task should be marked as complete: ")
-    for index in range (len(to_do_list)):
+def complete (to_do_list,completed_tasks):
+	if not to_do_list:
+		print("No tasks to complete") 
+		return completed_tasks
+	task_lookup=input("Which task should be marked as complete: ")
+    for index in range(len(to_do_list)):
         if to_do_list[index]==task_lookup:
             store_value=to_do_list.pop(index)
             short_tuple=(store_value,)
-            combined_tuple=completed_tasks+short_tuple
+            combined_tuple=completed_tasks+short_tuple #removed first line 
             return combined_tuple
     
     print ("Task does not exist")
@@ -21,8 +24,9 @@ def complete (to_do_list, completed_tasks):
 def main():
     my_list = []
     completed_tasks = ()
-    start_manager=" "
-    while start_manager!=5:
+    set_condition=True
+	start_manager=" " 
+    while set_condition=True: #bug fix for while loop 
         start_manager = input(
             "\nWhat would you like to do for the to-do list:\n"
             "1.) Add Task\n"
@@ -43,8 +47,8 @@ def main():
                 print('Task does not exist.')
         elif start_manager == "3":
             if my_list:
-                for index in range(len(my_list)): 
-                    print(index+1,". " ,my_list[index])
+                for index, task in enumerate (my_list,start=1): #enumerate instead of range
+                    print(f"{index}.{task}")
             else:
                 print('No tasks in the to-do list.')
         elif start_manager == "4":
@@ -52,6 +56,7 @@ def main():
         elif start_manager== "5":
             print(completed_tasks)
         elif start_manager == "6":
+			set_condition=False 
             print('Goodbye')
             break
         else:
@@ -60,4 +65,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-	
